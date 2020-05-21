@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.slf4j:slf4j-simple:1.7.28">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-simple/1.7.28/cf5f2cf3c31e0e41b68d932d756398a1238d4456/slf4j-simple-1.7.28.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-simple/1.7.28/9f6b59e8f211b0d0583e00491db13f009fa03117/slf4j-simple-1.7.28-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

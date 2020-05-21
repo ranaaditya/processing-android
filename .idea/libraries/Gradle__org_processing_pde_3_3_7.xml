@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.processing:pde:3.3.7">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.processing/pde/3.3.7/85187b4ef6d35883a396f6780fdb8155b0bb490b/pde-3.3.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.processing/pde/3.3.7/4527b63095ff0180c044e724139bf99ae022826/pde-3.3.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

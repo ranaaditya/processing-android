@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jogamp.jogl:nativewindow:2.3.2:natives-linux-armv6hf">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jogamp.jogl/nativewindow/2.3.2/e959e10219f023c27bd4e5582f626e8874825820/nativewindow-2.3.2-natives-linux-armv6hf.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jogamp.jogl/nativewindow/2.3.2/6a86a9ce357c085e3052efcf639447f9957b82b8/nativewindow-2.3.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

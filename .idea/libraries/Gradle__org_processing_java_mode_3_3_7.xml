@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.processing:java-mode:3.3.7">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.processing/java-mode/3.3.7/c4834cad9e3500784cb589bad91333821b016cda/java-mode-3.3.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.processing/java-mode/3.3.7/1bdc06642d9d873663ffb22aae91653070766d1f/java-mode-3.3.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

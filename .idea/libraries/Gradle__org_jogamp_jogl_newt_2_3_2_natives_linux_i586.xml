@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jogamp.jogl:newt:2.3.2:natives-linux-i586">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jogamp.jogl/newt/2.3.2/8e2017dd73e68ae1753f0724e0489d835f791946/newt-2.3.2-natives-linux-i586.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jogamp.jogl/newt/2.3.2/6a86a9ce357c085e3052efcf639447f9957b82b8/newt-2.3.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

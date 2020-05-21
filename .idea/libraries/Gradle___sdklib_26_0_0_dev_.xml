@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: :sdklib-26.0.0-dev:">
+    <CLASSES>
+      <root url="jar://$ANDROID_SDK$/tools/lib/sdklib-26.0.0-dev.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

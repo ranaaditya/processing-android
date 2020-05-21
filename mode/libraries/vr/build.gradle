@@ -115,4 +115,4 @@ build.doLast {
                file("dist/processing-vr-${vrLibVersion}-sources.jar").toPath(), REPLACE_EXISTING);
     Files.copy(file("$buildDir/libs/vr.jar.MD5").toPath(),
                file("dist/processing-vr-${vrLibVersion}.jar.md5").toPath(), REPLACE_EXISTING);
-}
+} 

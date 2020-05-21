@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jogamp.jogl:newt:2.3.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jogamp.jogl/newt/2.3.2/2f0d759de0a7d61be4cba251b573b98bcef608d8/newt-2.3.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jogamp.jogl/newt/2.3.2/6a86a9ce357c085e3052efcf639447f9957b82b8/newt-2.3.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mode/tools/SDKUpdater/SDKUpdater.iml" filepath="$PROJECT_DIR$/.idea/modules/mode/tools/SDKUpdater/SDKUpdater.iml" group="processing-android/mode/tools/SDKUpdater" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mode/libraries/ar/ar.iml" filepath="$PROJECT_DIR$/.idea/modules/mode/libraries/ar/ar.iml" group="processing-android/mode/libraries/ar" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/core.iml" group="processing-android/core" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mode/libraries/libraries.iml" filepath="$PROJECT_DIR$/.idea/modules/mode/libraries/libraries.iml" group="processing-android/mode/libraries" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mode/mode.iml" filepath="$PROJECT_DIR$/.idea/modules/mode/mode.iml" group="processing-android/mode" />
+      <module fileurl="file://$PROJECT_DIR$/processing-android.iml" filepath="$PROJECT_DIR$/processing-android.iml" group="processing-android" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/processing-android_buildSrc.iml" filepath="$PROJECT_DIR$/.idea/modules/processing-android_buildSrc.iml" group="processing-android/processing-android_buildSrc" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mode/tools/tools.iml" filepath="$PROJECT_DIR$/.idea/modules/mode/tools/tools.iml" group="processing-android/mode/tools" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mode/libraries/vr/vr.iml" filepath="$PROJECT_DIR$/.idea/modules/mode/libraries/vr/vr.iml" group="processing-android/mode/libraries/vr" />
+    </modules>
+  </component>
+</project>

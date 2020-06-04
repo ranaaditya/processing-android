@@ -8,7 +8,9 @@ apply plugin: 'aar'
 dependencies {
     implementation name: "android"
 
-    implementationAar "com.android.support:support-v4:${supportLibsVersion}"
+//    implementationAar "com.android.support:support-v4:${supportLibsVersion}"
+    implementationAar 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "androidx.core:core:1.2.0"
     implementationAar "com.google.android.support:wearable:${wearVersion}"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }

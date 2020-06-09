@@ -11,6 +11,7 @@ dependencies {
     implementationAar "com.android.support:support-v4:${supportLibsVersion}"
     implementationAar "com.google.android.support:wearable:${wearVersion}"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    runtime group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: '1.3.72'
 }
 
 task createPom {
@@ -122,6 +123,8 @@ buildscript {
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-stdlib:1.3.72"
+        classpath "org.jetbrains.kotlin:kotlin-reflect:1.3.72"
     }
 }
 repositories {

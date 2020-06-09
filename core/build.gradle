@@ -62,7 +62,11 @@ sourceSets {
 
 task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = "sources"
-    from sourceSets.main.allSource
+
+    from (sourceSets.main.allSource)
+
+    dependsOn(configurations.runtimeClasspath)
+    from { configurations.compileClasspath.collect{ it.isDirectory()? it :zipTree(it)} }
 }
 
 // Does not work because of Processing-specific tags in source code, such as @webref

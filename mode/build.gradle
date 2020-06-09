@@ -64,6 +64,8 @@ task getjdi(type: Copy) {
     include '**/*.jar'
     exclude 'META-INF'
   }
+    dependsOn(configurations.runtimeClasspath)
+    from { configurations.compileClasspath.collect{ it.isDirectory()? it :zipTree(it)} }
   into "mode"  
 }
 

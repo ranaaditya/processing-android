@@ -2234,7 +2234,7 @@ public class PGraphicsOpenGL extends PGraphics {
   protected PShape createShapeFamily(int type) {
     PShape shape = new PShapeOpenGL(this, type);
     if (is3D()) {
-      shape.set3D(true);
+      shape.is3D = true;
     }
     return shape;
   }
@@ -2244,7 +2244,7 @@ public class PGraphicsOpenGL extends PGraphics {
   protected PShape createShapePrimitive(int kind, float... p) {
     PShape shape = new PShapeOpenGL(this, kind, p);
     if (is3D()) {
-      shape.set3D(true);
+      shape.is3D = true;
     }
     return shape;
   }
@@ -3660,8 +3660,8 @@ public class PGraphicsOpenGL extends PGraphics {
       pushMatrix();
 
       if (shapeMode == CENTER) {
-        translate(x - shape.getWidth() / 2, y - shape.getHeight() / 2,
-                  z - shape.getDepth() / 2);
+        translate(x - shape.mwidth / 2, y - shape.mheight / 2,
+                  z - shape.mdepth / 2);
 
       } else if ((shapeMode == CORNER) || (shapeMode == CORNERS)) {
         translate(x, y, z);
@@ -3685,15 +3685,15 @@ public class PGraphicsOpenGL extends PGraphics {
       if (shapeMode == CENTER) {
         // x, y and z are center, c, d and e refer to a diameter
         translate(x - c / 2f, y - d / 2f, z - e / 2f);
-        scale(c / shape.getWidth(),
-              d / shape.getHeight(),
-              e / shape.getDepth());
+        scale(c / shape.mwidth,
+              d / shape.mheight,
+              e / shape.mdepth);
 
       } else if (shapeMode == CORNER) {
         translate(x, y, z);
-        scale(c / shape.getWidth(),
-              d / shape.getHeight(),
-              e / shape.getDepth());
+        scale(c / shape.mwidth,
+              d / shape.mheight,
+              e / shape.mdepth);
 
       } else if (shapeMode == CORNERS) {
         // c, d, e are x2/y2/z2, make them into width/height/depth
@@ -3702,9 +3702,9 @@ public class PGraphicsOpenGL extends PGraphics {
         e -= z;
         // then same as above
         translate(x, y, z);
-        scale(c / shape.getWidth(),
-              d / shape.getHeight(),
-              e / shape.getDepth());
+        scale(c / shape.mwidth,
+              d / shape.mheight,
+              e / shape.mdepth);
       }
       shape.draw(this);
 

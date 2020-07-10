@@ -81,22 +81,22 @@ public class PShapeOBJ extends PShape {
       kind = POLYGON;
     }
 
-    stroke = false;
-    fill = true;
+    mstroke = false;
+    psfill = true;
 
     // Setting material properties for the new face
     fillColor = rgbaValue(mtl.kd);
     ambientColor = rgbaValue(mtl.ka);
     specularColor = rgbaValue(mtl.ks);
-    shininess = mtl.ns;
+    mshininess = mtl.ns;
     if (mtl.kdMap != null) {
       // If current material is textured, then tinting the texture using the
       // diffuse color.
       tintColor = rgbaValue(mtl.kd, mtl.d);
     }
 
-    vertexCount = face.vertIdx.size();
-    vertices = new float[vertexCount][12];
+    mvertexCount = face.vertIdx.size();
+    vertices = new float[mvertexCount][12];
     for (int j = 0; j < face.vertIdx.size(); j++){
       int vertIdx, normIdx;
       PVector vert, norms;

@@ -187,7 +187,7 @@ open class PGraphics2DX : PGraphicsOpenGL() {
     // SHAPE
 
     override fun shape(shape: PShape) {
-        if (shape.is2D) {
+        if (shape.is2D()) {
             if (!useParentImpl) {
                 useOldP2D()
                 super.shape(shape)
@@ -201,7 +201,7 @@ open class PGraphics2DX : PGraphicsOpenGL() {
     }
 
     override fun shape(shape: PShape, x: Float, y: Float) {
-        if (shape.is2D) {
+        if (shape.is2D()) {
             if (!useParentImpl) {
                 useOldP2D()
                 super.shape(shape, x, y)
@@ -215,7 +215,7 @@ open class PGraphics2DX : PGraphicsOpenGL() {
     }
 
     override fun shape(shape: PShape, a: Float, b: Float, c: Float, d: Float) {
-        if (shape.is2D) {
+        if (shape.is2D()) {
             if (!useParentImpl) {
                 useOldP2D()
                 super.shape(shape, a, b, c, d)

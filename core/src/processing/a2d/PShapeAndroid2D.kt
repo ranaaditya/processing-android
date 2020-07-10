@@ -91,7 +91,7 @@ open class PShapeAndroid2D : PShapeSVG {
 
     // . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
-    override fun styles(g: PGraphics) {
+    override fun styles(g: PGraphics?) {
         super.styles(g)
         if (g is PGraphicsAndroid2D) {
             val gg = g

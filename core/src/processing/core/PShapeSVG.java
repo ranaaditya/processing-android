@@ -143,8 +143,8 @@ public class PShapeSVG extends PShape {
       // Can't handle width/height as percentages easily. I'm just going
       // to put in 100 as a dummy value, beacuse this means that it will
       // come out as a reasonable value.
-      if (unitWidth  != null) width  = parseUnitSize(unitWidth,  100);
-      if (unitHeight != null) height = parseUnitSize(unitHeight, 100);
+      if (unitWidth  != null) mwidth = parseUnitSize(unitWidth,  100);
+      if (unitHeight != null) mheight = parseUnitSize(unitHeight, 100);
 
       String viewBoxStr = properties.getString("viewBox");
       if (viewBoxStr != null) {
@@ -152,21 +152,21 @@ public class PShapeSVG extends PShape {
         if (unitWidth == null || unitHeight == null) {
           // Not proper parsing of the viewBox, but will cover us for cases where
           // the width and height of the object is not specified.
-          width = viewBox[2];
-          height = viewBox[3];
+          mwidth = viewBox[2];
+          mheight = viewBox[3];
         } else {
           // http://www.w3.org/TR/SVG/coords.html#ViewBoxAttribute
           // TODO: preserveAspectRatio.
           if (matrix == null) matrix = new PMatrix2D();
-          matrix.scale(width/viewBox[2], height/viewBox[3]);
+          matrix.scale(mwidth /viewBox[2], mheight /viewBox[3]);
           matrix.translate(-viewBox[0], -viewBox[1]);
         }
       }
 
       // Negative size is illegal.
-      if (width < 0 || height < 0)
-        throw new RuntimeException("<svg>: width (" + width +
-            ") and height (" + height + ") must not be negative.");
+      if (mwidth < 0 || mheight < 0)
+        throw new RuntimeException("<svg>: width (" + mwidth +
+            ") and height (" + mheight + ") must not be negative.");
 
       // It's technically valid to have width or height == 0. Not specified at
       // all is what to test for.
@@ -177,12 +177,12 @@ public class PShapeSVG extends PShape {
         // For the spec, the default is 100% and 100%. For purposes
         // here, insert a dummy value because this is prolly just a
         // font or something for which the w/h doesn't matter.
-        width = 1;
-        height = 1;
+        mwidth = 1;
+        mheight = 1;
       }
 
-      svgWidth = width;
-      svgHeight = height;
+      svgWidth = mwidth;
+      svgHeight = mheight;
       svgSizeXY = PApplet.sqrt((svgWidth*svgWidth + svgHeight*svgHeight)/2.0f);
     }
 
@@ -226,16 +226,16 @@ public class PShapeSVG extends PShape {
 
     if (parent == null) {
       // set values to their defaults according to the SVG spec
-      stroke = false;
+      mstroke = false;
       strokeColor = 0xff000000;
-      strokeWeight = 1;
-      strokeCap = PConstants.SQUARE;  // equivalent to BUTT in svg spec
-      strokeJoin = PConstants.MITER;
+      mstrokeWeight = 1;
+      mstrokeCap = PConstants.SQUARE;  // equivalent to BUTT in svg spec
+      mstrokeJoin = PConstants.MITER;
       strokeGradient = null;
 //      strokeGradientPaint = null;
       strokeName = null;
 
-      fill = true;
+      psfill = true;
       fillColor = 0xff000000;
       fillGradient = null;
 //      fillGradientPaint = null;
@@ -251,16 +251,16 @@ public class PShapeSVG extends PShape {
       opacity = 1;
 
     } else {
-      stroke = parent.stroke;
+      mstroke = parent.mstroke;
       strokeColor = parent.strokeColor;
-      strokeWeight = parent.strokeWeight;
-      strokeCap = parent.strokeCap;
-      strokeJoin = parent.strokeJoin;
+      mstrokeWeight = parent.mstrokeWeight;
+      mstrokeCap = parent.mstrokeCap;
+      mstrokeJoin = parent.mstrokeJoin;
       strokeGradient = parent.strokeGradient;
 //      strokeGradientPaint = parent.strokeGradientPaint;
       strokeName = parent.strokeName;
 
-      fill = parent.fill;
+      psfill = parent.psfill;
       fillColor = parent.fillColor;
       fillGradient = parent.fillGradient;
 //      fillGradientPaint = parent.fillGradientPaint;
@@ -288,14 +288,14 @@ public class PShapeSVG extends PShape {
 
   protected void parseChildren(XML graphics) {
     XML[] elements = graphics.getChildren();
-    children = new PShape[elements.length];
+    mchildren = new PShape[elements.length];
     childCount = 0;
 
     for (XML elem : elements) {
       PShape kid = parseChild(elem);
       if (kid != null) addChild(kid);
     }
-    children = (PShape[]) PApplet.subset(children, 0, childCount);
+    mchildren = (PShape[]) PApplet.subset(mchildren, 0, childCount);
   }
 
 
@@ -406,7 +406,7 @@ public class PShapeSVG extends PShape {
   protected void parseLine() {
     kind = LINE;
     family = PRIMITIVE;
-    params = new float[] {
+    mparams = new float[] {
         getFloatWithUnit(element, "x1", svgWidth),
         getFloatWithUnit(element, "y1", svgHeight),
         getFloatWithUnit(element, "x2", svgWidth),
@@ -422,10 +422,10 @@ public class PShapeSVG extends PShape {
   protected void parseEllipse(boolean circle) {
     kind = ELLIPSE;
     family = PRIMITIVE;
-    params = new float[4];
+    mparams = new float[4];
 
-    params[0] = getFloatWithUnit(element, "cx", svgWidth);
-    params[1] = getFloatWithUnit(element, "cy", svgHeight);
+    mparams[0] = getFloatWithUnit(element, "cx", svgWidth);
+    mparams[1] = getFloatWithUnit(element, "cy", svgHeight);
 
     float rx, ry;
     if (circle) {
@@ -434,18 +434,18 @@ public class PShapeSVG extends PShape {
       rx = getFloatWithUnit(element, "rx", svgWidth);
       ry = getFloatWithUnit(element, "ry", svgHeight);
     }
-    params[0] -= rx;
-    params[1] -= ry;
+    mparams[0] -= rx;
+    mparams[1] -= ry;
 
-    params[2] = rx*2;
-    params[3] = ry*2;
+    mparams[2] = rx*2;
+    mparams[3] = ry*2;
   }
 
 
   protected void parseRect() {
     kind = RECT;
     family = PRIMITIVE;
-    params = new float[] {
+    mparams = new float[] {
         getFloatWithUnit(element, "x", svgWidth),
         getFloatWithUnit(element, "y", svgHeight),
         getFloatWithUnit(element, "width", svgWidth),
@@ -456,10 +456,10 @@ public class PShapeSVG extends PShape {
 
   protected void parseImage() {
     kind = RECT;
-    textureMode = NORMAL;
+    pstextureMode = NORMAL;
 
     family = PRIMITIVE;
-    params = new float[] {
+    mparams = new float[] {
         getFloatWithUnit(element, "x", svgWidth),
         getFloatWithUnit(element, "y", svgHeight),
         getFloatWithUnit(element, "width", svgWidth),
@@ -482,13 +482,13 @@ public class PShapeSVG extends PShape {
     if (pointsAttr != null) {
       Pattern pattern = Pattern.compile("([+-]?[\\d]+(\\.[\\d]+)?([eE][+-][\\d]+)?)(,?\\s*)([+-]?[\\d]+(\\.[\\d]+)?([eE][+-][\\d]+)?)");
       Matcher matcher = pattern.matcher(pointsAttr);
-      vertexCount = 0;
+      mvertexCount = 0;
       while (matcher.find()) {
-        vertexCount++;
+        mvertexCount++;
       }
       matcher.reset();
-      vertices = new float[vertexCount][2];
-      for (int i = 0; i < vertexCount; i++) {
+      vertices = new float[mvertexCount][2];
+      for (int i = 0; i < mvertexCount; i++) {
         matcher.find();
         vertices[i][X] = Float.parseFloat(matcher.group(1));
         vertices[i][Y] = Float.parseFloat(matcher.group(5));
@@ -561,7 +561,7 @@ public class PShapeSVG extends PShape {
     String[] pathTokens =
         PApplet.splitTokens(pathBuffer.toString(), "|" + WHITESPACE);
     vertices = new float[pathTokens.length][2];
-    vertexCodes = new int[pathTokens.length];
+    mvertexCodes = new int[pathTokens.length];
 
     float cx = 0;
     float cy = 0;
@@ -695,10 +695,10 @@ public class PShapeSVG extends PShape {
             ctrlX = cx;
             ctrlY = cy;
           } else {
-            float ppx = vertices[vertexCount-2][X];
-            float ppy = vertices[vertexCount-2][Y];
-            float px = vertices[vertexCount-1][X];
-            float py = vertices[vertexCount-1][Y];
+            float ppx = vertices[mvertexCount -2][X];
+            float ppy = vertices[mvertexCount -2][Y];
+            float px = vertices[mvertexCount -1][X];
+            float py = vertices[mvertexCount -1][Y];
             ctrlX = px + (px - ppx);
             ctrlY = py + (py - ppy);
           }
@@ -720,10 +720,10 @@ public class PShapeSVG extends PShape {
             ctrlX = cx;
             ctrlY = cy;
           } else {
-            float ppx = vertices[vertexCount-2][X];
-            float ppy = vertices[vertexCount-2][Y];
-            float px = vertices[vertexCount-1][X];
-            float py = vertices[vertexCount-1][Y];
+            float ppx = vertices[mvertexCount -2][X];
+            float ppy = vertices[mvertexCount -2][Y];
+            float px = vertices[mvertexCount -1][X];
+            float py = vertices[mvertexCount -1][Y];
             ctrlX = px + (px - ppx);
             ctrlY = py + (py - ppy);
           }
@@ -786,10 +786,10 @@ public class PShapeSVG extends PShape {
             ctrlX = cx;
             ctrlY = cy;
           } else {
-            float ppx = vertices[vertexCount-2][X];
-            float ppy = vertices[vertexCount-2][Y];
-            float px = vertices[vertexCount-1][X];
-            float py = vertices[vertexCount-1][Y];
+            float ppx = vertices[mvertexCount -2][X];
+            float ppy = vertices[mvertexCount -2][Y];
+            float px = vertices[mvertexCount -1][X];
+            float py = vertices[mvertexCount -1][Y];
             ctrlX = px + (px - ppx);
             ctrlY = py + (py - ppy);
           }
@@ -810,10 +810,10 @@ public class PShapeSVG extends PShape {
             ctrlX = cx;
             ctrlY = cy;
           } else {
-            float ppx = vertices[vertexCount-2][X];
-            float ppy = vertices[vertexCount-2][Y];
-            float px = vertices[vertexCount-1][X];
-            float py = vertices[vertexCount-1][Y];
+            float ppx = vertices[mvertexCount -2][X];
+            float ppy = vertices[mvertexCount -2][Y];
+            float px = vertices[mvertexCount -1][X];
+            float py = vertices[mvertexCount -1][Y];
             ctrlX = px + (px - ppx);
             ctrlY = py + (py - ppy);
           }
@@ -897,28 +897,28 @@ public class PShapeSVG extends PShape {
 //      }
 
   private void parsePathVertex(float x, float y) {
-    if (vertexCount == vertices.length) {
+    if (mvertexCount == vertices.length) {
       //vertices = (float[][]) PApplet.expand(vertices);
-      float[][] temp = new float[vertexCount << 1][2];
-      System.arraycopy(vertices, 0, temp, 0, vertexCount);
+      float[][] temp = new float[mvertexCount << 1][2];
+      System.arraycopy(vertices, 0, temp, 0, mvertexCount);
       vertices = temp;
     }
-    vertices[vertexCount][X] = x;
-    vertices[vertexCount][Y] = y;
-    vertexCount++;
+    vertices[mvertexCount][X] = x;
+    vertices[mvertexCount][Y] = y;
+    mvertexCount++;
   }
 
 
   private void parsePathCode(int what) {
-    if (vertexCodeCount == vertexCodes.length) {
-      vertexCodes = PApplet.expand(vertexCodes);
+    if (mvertexCodeCount == mvertexCodes.length) {
+      mvertexCodes = PApplet.expand(mvertexCodes);
     }
-    vertexCodes[vertexCodeCount++] = what;
+    mvertexCodes[mvertexCodeCount++] = what;
   }
 
 
   private void parsePathMoveto(float px, float py) {
-    if (vertexCount > 0) {
+    if (mvertexCount > 0) {
       parsePathCode(BREAK);
     }
     parsePathCode(VERTEX);
@@ -1221,7 +1221,7 @@ public class PShapeSVG extends PShape {
 
 
   void setStrokeWeight(String lineweight) {
-    strokeWeight = parseUnitSize(lineweight, svgSizeXY);
+    mstrokeWeight = parseUnitSize(lineweight, svgSizeXY);
   }
 
 
@@ -1236,13 +1236,13 @@ public class PShapeSVG extends PShape {
       // do nothing, will inherit automatically
 
     } else if (linejoin.equals("miter")) {
-      strokeJoin = PConstants.MITER;
+      mstrokeJoin = PConstants.MITER;
 
     } else if (linejoin.equals("round")) {
-      strokeJoin = PConstants.ROUND;
+      mstrokeJoin = PConstants.ROUND;
 
     } else if (linejoin.equals("bevel")) {
-      strokeJoin = PConstants.BEVEL;
+      mstrokeJoin = PConstants.BEVEL;
     }
   }
 
@@ -1252,13 +1252,13 @@ public class PShapeSVG extends PShape {
       // do nothing, will inherit automatically
 
     } else if (linecap.equals("butt")) {
-      strokeCap = PConstants.SQUARE;
+      mstrokeCap = PConstants.SQUARE;
 
     } else if (linecap.equals("round")) {
-      strokeCap = PConstants.ROUND;
+      mstrokeCap = PConstants.ROUND;
 
     } else if (linecap.equals("square")) {
-      strokeCap = PConstants.PROJECT;
+      mstrokeCap = PConstants.PROJECT;
     }
   }
 
@@ -1296,13 +1296,13 @@ public class PShapeSVG extends PShape {
       color = opacityMask | parseSimpleColor(colorText);
     }
     if (isFill) {
-      fill = visible;
+      psfill = visible;
       fillColor = color;
       fillName = name;
       fillGradient = gradient;
 //      fillGradientPaint = paint;
     } else {
-      stroke = visible;
+      mstroke = visible;
       strokeColor = color;
       strokeName = name;
       strokeGradient = gradient;
@@ -1984,7 +1984,7 @@ public class PShapeSVG extends PShape {
 
 
     protected boolean isLegit() {  // TODO need a better way to handle this...
-      return vertexCount != 0;
+      return mvertexCount != 0;
     }
   }
 
@@ -2015,8 +2015,8 @@ public class PShapeSVG extends PShape {
     if (found != null) {
 //      found.x = this.x;
 //      found.y = this.y;
-      found.width = this.width;
-      found.height = this.height;
+      found.mwidth = this.mwidth;
+      found.mheight = this.mheight;
     }
     return found;
   }

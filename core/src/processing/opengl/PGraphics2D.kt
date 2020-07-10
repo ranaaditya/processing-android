@@ -136,7 +136,7 @@ open class PGraphics2D : PGraphicsOpenGL() {
     // SHAPE
 
     override fun shape(shape: PShape) {
-        if (shape.is2D) {
+        if (shape.is2D()) {
             super.shape(shape)
         } else {
             PGraphics.showWarning("The shape object is not 2D, cannot be displayed with " +
@@ -145,7 +145,7 @@ open class PGraphics2D : PGraphicsOpenGL() {
     }
 
     override fun shape(shape: PShape, x: Float, y: Float) {
-        if (shape.is2D) {
+        if (shape.is2D()) {
             super.shape(shape, x, y)
         } else {
             PGraphics.showWarning("The shape object is not 2D, cannot be displayed with " +
@@ -154,7 +154,7 @@ open class PGraphics2D : PGraphicsOpenGL() {
     }
 
     override fun shape(shape: PShape, a: Float, b: Float, c: Float, d: Float) {
-        if (shape.is2D) {
+        if (shape.is2D()) {
             super.shape(shape, a, b, c, d)
         } else {
             PGraphics.showWarning("The shape object is not 2D, cannot be displayed with " +

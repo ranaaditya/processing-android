@@ -3062,7 +3062,7 @@ public class PGraphics extends PImage implements PConstants {
     if (shape.isVisible()) {  // don't do expensive matrix ops if invisible
       if (shapeMode == CENTER) {
         pushMatrix();
-        translate(-shape.getWidth()/2, -shape.getHeight()/2);
+        translate(-shape.mwidth /2, -shape.mheight /2);
       }
 
       shape.draw(this); // needs to handle recorder too
@@ -3082,7 +3082,7 @@ public class PGraphics extends PImage implements PConstants {
       pushMatrix();
 
       if (shapeMode == CENTER) {
-        translate(x - shape.getWidth()/2, y - shape.getHeight()/2);
+        translate(x - shape.mwidth /2, y - shape.mheight /2);
 
       } else if ((shapeMode == CORNER) || (shapeMode == CORNERS)) {
         translate(x, y);
@@ -3107,11 +3107,11 @@ public class PGraphics extends PImage implements PConstants {
       if (shapeMode == CENTER) {
         // x and y are center, c and d refer to a diameter
         translate(x - c/2f, y - d/2f);
-        scale(c / shape.getWidth(), d / shape.getHeight());
+        scale(c / shape.mwidth, d / shape.mheight);
 
       } else if (shapeMode == CORNER) {
         translate(x, y);
-        scale(c / shape.getWidth(), d / shape.getHeight());
+        scale(c / shape.mwidth, d / shape.mheight);
 
       } else if (shapeMode == CORNERS) {
         // c and d are x2/y2, make them into width/height
@@ -3119,7 +3119,7 @@ public class PGraphics extends PImage implements PConstants {
         d -= y;
         // then same as above
         translate(x, y);
-        scale(c / shape.getWidth(), d / shape.getHeight());
+        scale(c / shape.mwidth, d / shape.mheight);
       }
       shape.draw(this);
 

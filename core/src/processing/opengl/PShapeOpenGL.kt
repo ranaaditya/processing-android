@@ -1639,8 +1639,8 @@ open class PShapeOpenGL : PShape {
         }
         if (family == PConstants.GROUP) {
             for (i in 0 until childCount) {
-                val child = mchildren?.get(i) as PShapeOpenGL
-                child.setStroke(stroke)
+                val child = mchildren?.get(i) as PShapeOpenGL?
+                child?.setStroke(stroke)
             }
         } else {
             setStrokeImpl(stroke)

@@ -1,4 +1,6 @@
-/* -*- mode: java; c-basic-offset: 2; indent-tabs-mode: nil -*- */ /*
+/* -*- mode: java; c-basic-offset: 2; indent-tabs-mode: nil -*- */
+
+/*
   Part of the Processing project - http://processing.org
 
   Copyright (c) 2012-19 The Processing Foundation
@@ -18,6 +20,7 @@
   Free Software Foundation, Inc., 59 Temple Place, Suite 330,
   Boston, MA  02111-1307  USA
 */
+
 package processing.core
 
 import android.graphics.BitmapFactory
@@ -119,7 +122,10 @@ open class PShape : PConstants {
      * @see PShape.mheight
      */
     @JvmField
-    var mwidth = 0f
+    var mwidth = 0f    /* change the property_name to mwidth from width
+                          because of the inheritance model and getters
+                          and setters by kotlin itself creates unusual
+                          JVM syntax declaration clash errors*/
 
     /**
      * Get the height of the drawing area (not necessarily the shape boundary).
@@ -136,14 +142,20 @@ open class PShape : PConstants {
      * @see PShape.mwidth
      */
     @JvmField
-    var mheight = 0f
+    var mheight = 0f     /* change the property_name to mheight from height
+                          because of the inheritance model and getters and
+                          setters by kotlin itself creates unusual JVM
+                          syntax declaration clash errors*/
 
     /**
      * Get the depth of the shape area (not necessarily the shape boundary). Only makes sense for 3D PShape subclasses,
      * such as PShape3D.
      */
     @JvmField
-     var mdepth = 0f
+     var mdepth = 0f    /* change the property_name to mdepth from depth
+                          because of the inheritance model and getters
+                          and setters by kotlin itself creates unusual
+                          JVM syntax declaration clash errors*/
 
     @JvmField
     var g: PGraphics? = null
@@ -167,18 +179,35 @@ open class PShape : PConstants {
     protected var strokeColor = 0
 
     @JvmField
-    protected var mstrokeWeight = 1f // default is 1 = 0f
+    // default is 1 = 0f
+    protected var mstrokeWeight = 1f     /* change the property_name to mstrokeWeight from
+                                            strokeWeight because of the inheritance model
+                                            and getters and setters by kotlin itself creates
+                                            unusual JVM syntax declaration clash errors*/
+
 
     @JvmField
-    protected var mstrokeCap = 0
+    protected var mstrokeCap = 0        /* change the property_name to mstrokeCap from
+                                            strokeCap because of the inheritance model
+                                            and getters and setters by kotlin itself creates
+                                            unusual JVM syntax declaration clash errors*/
 
     @JvmField
-    protected var mstrokeJoin = 0
+    protected var mstrokeJoin = 0       /* change the property_name to mstrokeJoin from
+                                            strokeJoin because of the inheritance model
+                                            and getters and setters by kotlin itself creates
+                                            unusual JVM syntax declaration clash errors*/
+
     @JvmField
     protected var psfill = false
     @JvmField
     protected var fillColor = 0
-    protected var mtint = false
+
+    protected var mtint = false        /* change the property_name to mtint from
+                                           tint because of the inheritance model
+                                           and getters and setters by kotlin itself creates
+                                           unusual JVM syntax declaration clash errors*/
+
     @JvmField
     protected var tintColor = 0
     @JvmField
@@ -191,7 +220,11 @@ open class PShape : PConstants {
     @JvmField
     protected var emissiveColor = 0
     @JvmField
-    protected var mshininess = 0f
+    protected var mshininess = 0f      /* change the property_name to mshininess from
+                                            shininess because of the inheritance model
+                                            and getters and setters by kotlin itself creates
+                                            unusual JVM syntax declaration clash errors*/
+
     @JvmField
     protected var sphereDetailU = 0
     @JvmField
@@ -212,7 +245,10 @@ open class PShape : PConstants {
     var mparams: FloatArray? = null
 
     @JvmField
-    protected var mvertexCount = 0
+    protected var mvertexCount = 0    /* change the property_name to mvertexCount from
+                                          vertexCount because of the inheritance model
+                                          and getters and setters by kotlin itself creates
+                                          unusual JVM syntax declaration clash errors*/
 
     /**
      * When drawing POLYGON shapes, the second param is an array of length

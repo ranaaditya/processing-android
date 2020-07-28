@@ -18,7 +18,7 @@ dependencies {
     compileOnly("com.android.platform:android:26.0.0")
     compileOnly("org.p5android:processing-core:4.1.1")
     implementationAar("com.google.ar:core:1.12.0")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.72")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${project.extra["kotlin_version"]}")
 }
 
 task("createPom") {

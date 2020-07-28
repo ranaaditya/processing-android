@@ -4,7 +4,6 @@ import java.nio.file.StandardCopyOption.REPLACE_EXISTING
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    `kotlin-dsl`
    kotlin("jvm")
 }
 // Extend compile to copy the jars from gradle-tooling and slf4j:
@@ -31,7 +30,7 @@ dependencies {
     compileAndCopy("org.slf4j:slf4j-api:${project.extra["slf4jVersion"]}")
     compileAndCopy("org.slf4j:slf4j-simple:${project.extra["slf4jVersion"]}")
     compile(fileTree( mapOf("include" to listOf("jdi.jar","jdimodel.jar"), "dir" to "mode" )))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.72")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${project.extra["kotlin_version"]}")
 }
 
 // This task copies the gradle tooling jar into the mode folder

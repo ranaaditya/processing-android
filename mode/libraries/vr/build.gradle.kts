@@ -18,7 +18,7 @@ dependencies {
     compileOnly("org.p5android:processing-core:${project.extra["modeVersion"]}")
     implementationAar("com.google.vr:sdk-audio:${project.extra["gvrVersion"]}")
     implementationAar("com.google.vr:sdk-base:${project.extra["gvrVersion"]}")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.72")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${project.extra["kotlin_version"]}")
 }
 
 task("createPom") {

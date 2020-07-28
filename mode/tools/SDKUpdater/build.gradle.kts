@@ -9,7 +9,7 @@ dependencies {
     compile("org.processing:pde:${project.extra["processingVersion"]}")
     compile("com.android.tools:sdklib-${project.extra["toolsLibVersion"]}")
     compile("com.android.tools:repository-${project.extra["toolsLibVersion"]}")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${project.extra["kotlin_version"]}")
 }
 
 sourceSets {

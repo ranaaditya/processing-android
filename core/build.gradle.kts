@@ -7,7 +7,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 //apply plugin: "aar"
 
 plugins {
-    `kotlin-dsl`
     maven
     id("aar")
     kotlin("jvm")
@@ -17,7 +16,7 @@ dependencies {
     implementation("com.android.platform:android:26.0.0")
     implementationAar("com.android.support:support-v4:${project.extra["supportLibsVersion"]}")
     implementationAar("com.google.android.support:wearable:${project.extra["wearVersion"]}")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.72")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${project.extra["kotlin_version"]}")
 }
 
 task ("createPom") {

@@ -7,7 +7,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 //apply plugin: "aar"
 
 plugins {
-    `kotlin-dsl`
     maven
     java
     id("aar")

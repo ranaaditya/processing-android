@@ -12,6 +12,9 @@ import com.android.builder.aar.AarExtractor
 import  com.android.SdkConstants.FD_JARS
 import  com.android.SdkConstants.FN_CLASSES_JAR
 import java.io.File
+import java.nio.file.Files
+import java.nio.file.Files.copy
+import  java.nio.file.StandardCopyOption.REPLACE_EXISTING
 
 /**
  * Build Gradle plgin needed to use aar files as dependencies in a pure java library project. 
@@ -55,8 +58,8 @@ open class ImportAar : Plugin<Project> {
 //
 //
 //
-//                    val libraryFolder =  File(System.getProperty("user.dir"), "build/libs")
-//                    libraryFolder.mkdirs()
+                    val libraryFolder =  File(System.getProperty("user.dir"), "build/libs")
+                    libraryFolder.mkdirs()
 //
 //                    // Strip version number when copying
 //                    val name = jarFile.name
@@ -71,6 +74,11 @@ open class ImportAar : Plugin<Project> {
             project.afterEvaluate {
                 aarConfig.forEach { jarFile ->
                     project.dependencies.add(config.name, project.files(jarFile))
+                    val name = jarFile.name
+                    val p = name.lastIndexOf("-")
+                    val libName = name.substring(0,p) + ".jar"
+                    val libraryJar = File(libraryFolder,libName)
+                    Files.copy(jarFile.toPath(),libraryJar.toPath(),REPLACE_EXISTING)
                 }
             }
 

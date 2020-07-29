@@ -15,10 +15,10 @@ plugins {
 //}
 
 val compileAndCopy: Configuration by configurations.creating {
-    extendsFrom(configurations.named("compile").get())
+    extendsFrom(configurations["compile"])
 }
 val compileAndExtract: Configuration  by configurations.creating {
-    extendsFrom(configurations.named("compile").get())
+    extendsFrom(configurations["compile"])
 }
 
 dependencies {
@@ -34,13 +34,13 @@ dependencies {
 }
 
 // This task copies the gradle tooling jar into the mode folder
-tasks.register<Copy> ("copyToLib") {
+val copyToLib by tasks.registering(Copy::class){
   from (compileAndCopy.files)
   into ("mode")
 }
 
 tasks.build {
-    dependsOn("copyToLib")
+    dependsOn(copyToLib)
 }
 
     sourceSets {
